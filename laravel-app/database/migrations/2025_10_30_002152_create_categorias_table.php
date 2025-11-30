@@ -4,25 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+class CreateCategoriasTable extends Migration
+{
+    public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('categorias', function(Blueprint $table){
             $table->id();
-            $table->string('nome'); // Nome da categoria
+            $table->string('nome');
+            $table->text('descricao')->nullable();
             $table->timestamps();
         });
     }
 
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('categorias');
     }
-};
+}

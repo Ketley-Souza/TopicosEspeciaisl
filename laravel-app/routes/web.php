@@ -1,13 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\LivroController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\AuthSimpleController;
 
-// Rotas de produtos
-Route::get('/produtos', [ProdutoController::class, 'index']);
-Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
+Route::get('/', function(){ return redirect()->route('livros.index'); });
 
-// Rotas de categorias
-Route::get('/categorias', [CategoriaController::class, 'index']);
-Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
+Route::get('login', [AuthSimpleController::class,'showLogin'])->name('login');
+Route::post('login', [AuthSimpleController::class,'loginProcess']);
+Route::post('logout', [AuthSimpleController::class,'logout'])->name('logout');
+
+Route::middleware(['simple.auth'])->group(function(){
+    Route::resource('categorias', CategoriaController::class)->except(['show']);
+    Route::resource('livros', LivroController::class)->except(['show']);
+});
