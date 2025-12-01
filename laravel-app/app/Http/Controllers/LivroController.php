@@ -11,7 +11,7 @@ class LivroController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('simple.auth');
+        $this->middleware('simpleauth');
     }
 
     public function index(Request $request)

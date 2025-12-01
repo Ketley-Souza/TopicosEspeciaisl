@@ -11,7 +11,8 @@ Route::get('login', [AuthSimpleController::class,'showLogin'])->name('login');
 Route::post('login', [AuthSimpleController::class,'loginProcess']);
 Route::post('logout', [AuthSimpleController::class,'logout'])->name('logout');
 
-Route::middleware(['simple.auth'])->group(function(){
+Route::middleware(['simpleauth'])->group(function(){
     Route::resource('categorias', CategoriaController::class)->except(['show']);
     Route::resource('livros', LivroController::class)->except(['show']);
 });
+

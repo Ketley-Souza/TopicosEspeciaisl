@@ -10,7 +10,7 @@ class CategoriaController extends Controller
     public function __construct()
     {
         // Usuário precisa estar logado para todas as ações (ajuste se quiser permitir index/show público)
-        $this->middleware('simple.auth');
+        $this->middleware('simpleauth');
     }
 
     public function index(Request $request)
